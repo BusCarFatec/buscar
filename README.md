@@ -10,13 +10,6 @@ An academic project designed to help school transport companies manage students,
 
 ## 💻 Technologies Used
 
-- Java  
-- Swing (Java GUI)  
-- MigLayout  
-- (Optional) JDBC for database integration
-
-## 📦 How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/seu-usuario-ou-organizacao/transporte-escolar.git
+- C#  
+- WindowsForm  
+- PostgreSQL  
