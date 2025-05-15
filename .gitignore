@@ -1,0 +1,29 @@
+﻿# Build
+bin/
+obj/
+
+# Usuário do Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Pastas e arquivos temporários do Visual Studio
+.vs/
+
+# Dados de debug
+*.pdb
+
+# Logs
+*.log
+
+# Arquivos de cache
+*.cache
+*.dbmdl
+
+# Configurações locais
+launchSettings.json
+
+# Sistema
+Thumbs.db
+*.DS_Store
