@@ -1,33 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace BusCar.Controller
+namespace BusCar.Utils
 {
-    public class EmailController
+    public static class EmailController
     {
-        public EmailController(String email)
+        public static bool IsValid(string email)
         {
-            if (email == null)
+            try
             {
-                throw new Exception("Email não pode ser nulo");
-            } else {
-                var valid = true;
-                MailAddress address = new MailAddress(email);
-                try
-                {
-                    address = new MailAddress(email);
-                }
-                catch
-                {
-                    valid = false;
-                }
-                if (!valid)
-                {
-                    throw new Exception("Email inválido");
-                } else {
-                    return valid;
-                }
+                var address = new MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
