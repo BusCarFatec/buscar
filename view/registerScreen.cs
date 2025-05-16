@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace BusCar.view
 {
     public partial class registerScreen : Form
@@ -15,6 +16,16 @@ namespace BusCar.view
         public registerScreen()
         {
             InitializeComponent();
+        }
+
+        private void registerScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

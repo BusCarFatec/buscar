@@ -1,50 +1,47 @@
-﻿using Npgsql;
+﻿using MySql.Data.MySqlClient;
 using System;
 
 namespace Buscar.Database
 {
     public class Database
     {
-        private string connectionString = "Host=localhost;Username=admin;Password=poocarol123;Database=BusCarDB";
-        private readonly string _connectionString;
+        private string connectionString = "server=localhost;database=buscard;uid=root;pwd=;";
+        private MySqlConnection cnn;
 
-        public Initialize() {
-            using var conn = new NpgsqlConnection(connectionString);
-            conn.Open();
+        public Database()
+        {
+            cnn = new MySqlConnection(connectionString);
+        }
 
-            using var checkCmd = conn.CreateCommand();
-            checkCmd.CommandText = @"
-                SELECT EXISTS (
-                    SELECT FROM information_schema.tables 
-                    WHERE table_schema = 'public' 
-                    AND table_name = 'users'
-                );";
+        public MySqlConnection GetConnection()
+        {
+            return cnn;
+        }
 
-            bool exists = (bool)checkCmd.ExecuteScalar();
-
-            if (!exists)
+        public void OpenConnection()
+        {
+            try
             {
-                Console.WriteLine("Tabela 'users' não existe, criando...");
-                using var createCmd = conn.CreateCommand();
-                createCmd.CommandText = File.ReadAllText("scripts/create_tables.sql");
-                createCmd.ExecuteNonQuery();
-                Console.WriteLine("Tabelas criadas com sucesso!");
+                cnn.Open();
+                Console.WriteLine("Conexão aberta com sucesso.");
             }
-            else {
-                Console.WriteLine("Tabelas já existem");
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Erro ao conectar: " + ex.Message);
             }
         }
 
-        public Database(string connectionString)
+        public void CloseConnection()
         {
-            _connectionString = connectionString;
-        }
-
-        public NpgsqlConnection GetConnection()
-        {
-            var connection = new NpgsqlConnection(_connectionString);
-            connection.Open();
-            return connection;
+            try
+            {
+                cnn.Close();
+                Console.WriteLine("Conexão fechada.");
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Erro ao fechar a conexão: " + ex.Message);
+            }
         }
     }
 }
