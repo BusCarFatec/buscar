@@ -1,4 +1,8 @@
-﻿namespace BusCar.view
+﻿using System;
+using System.Windows.Forms;
+using BusCar.Properties;
+
+namespace BusCar.view
 {
     partial class RegisterScreen
     {

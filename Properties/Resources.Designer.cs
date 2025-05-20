@@ -34,6 +34,7 @@ namespace BusCar.Properties {
         }
 
         public static Image Tela_de_Login { get; internal set; }
+        public static Image Tela_de_Cadastro { get; internal set; }
 
         /// <summary>
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
