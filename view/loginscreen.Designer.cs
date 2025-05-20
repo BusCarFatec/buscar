@@ -1,6 +1,11 @@
-﻿namespace BusCar.view
+﻿using System;
+using System.Windows.Forms;
+using BusCar.Properties;
+
+
+namespace BusCar.view
 {
-    partial class Form1
+    partial class LoginScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +33,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             SuspendLayout();
             // 
-            // Form1
+            // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Resources.Tela_de_Login;
             ClientSize = new Size(1904, 1041);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Name = "LoginScreen";
+            Text = "LoginScreen";
             ResumeLayout(false);
         }
 

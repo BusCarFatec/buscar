@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BusCar.view
 {
-    public partial class registerScreen : Form
+    public partial class RegisterScreen : Form
     {
-        public registerScreen()
+        public RegisterScreen()
         {
             InitializeComponent();
         }
