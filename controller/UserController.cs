@@ -1,9 +1,8 @@
 using BCrypt.Net;
-using Buscar.Database;
-using Buscar.model;
+using BusCar.Database;
+using BusCar.model;
 using BusCar.Controller;
 using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Generators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,31 +22,31 @@ public class UserController
         {
             _database.OpenConnection();
 
-            // ValidaÁ„o de email
+            // Valida√ß√£o de email
             if (!BusCar.Utils.EmailController.IsValid(email))
             {
-                Console.WriteLine("Email inv·lido!");
+                Console.WriteLine("Email inv√°lido!");
                 return false;
             }
 
             // Verifica email duplicado
             if (AdminEmailExists(email))
             {
-                Console.WriteLine("Email j· est· em uso!");
+                Console.WriteLine("Email j√° est√° em uso!");
                 return false;
             }
 
-            // ValidaÁ„o de CNPJ
+            // Valida√ß√£o de CNPJ
             if (!CNPJController.ValidateCnpj(cnpj) || !CNPJController.IsNotKnownInvalid(cnpj))
             {
-                Console.WriteLine("CNPJ inv·lido!");
+                Console.WriteLine("CNPJ inv√°lido!");
                 return false;
             }
 
-            // ValidaÁ„o de CPF
+            // Valida√ß√£o de CPF
             if (!CPFController.ValidateCpf(cpf))
             {
-                Console.WriteLine("CPF inv·lido!");
+                Console.WriteLine("CPF inv√°lido!");
                 return false;
             }
 
@@ -70,7 +69,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao adicionar usu·rio admin: {ex.Message}");
+            Console.WriteLine($"Erro ao adicionar usu√°rio admin: {ex.Message}");
             return false;
         }
         finally
@@ -85,28 +84,28 @@ public class UserController
         {
             _database.OpenConnection();
 
-            // ValidaÁıes b·sicas
+            // Valida√ß√µes b√°sicas
             if (!BusCar.Utils.EmailController.IsValid(email))
             {
-                Console.WriteLine("Email inv·lido!");
+                Console.WriteLine("Email inv√°lido!");
                 return false;
             }
 
             if (DriverEmailExists(email))
             {
-                Console.WriteLine("Email j· est· em uso!");
+                Console.WriteLine("Email j√° est√° em uso!");
                 return false;
             }
 
             if (!CPFController.ValidateCpf(cpf))
             {
-                Console.WriteLine("CPF inv·lido!");
+                Console.WriteLine("CPF inv√°lido!");
                 return false;
             }
 
             if (!CNHController.ValidateCnh(cnh))
             { 
-                Console.WriteLine("CNH inv·lida!");
+                Console.WriteLine("CNH inv√°lida!");
                 return false;
             }
 
@@ -158,7 +157,7 @@ public class UserController
         }
         finally
         {
-            // N„o fecha a conex„o para n„o interferir com operaÁıes externas
+            // N√£o fecha a conex√£o para n√£o interferir com opera√ß√µes externas
         }
     }
 
@@ -182,7 +181,7 @@ public class UserController
         }
         finally
         {
-            // N„o fecha a conex„o para n„o interferir com operaÁıes externas
+            // N√£o fecha a conex√£o para n√£o interferir com opera√ß√µes externas
         }
     }
 
@@ -193,7 +192,7 @@ public class UserController
         try
         {
             _database.OpenConnection();
-            string sql = "SELECT id, name, email, user_type FROM users";
+            string sql = "SELECT id, name, email FROM users";
 
             using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
             using (var reader = cmd.ExecuteReader())
@@ -211,7 +210,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao listar usu·rios: {ex.Message}");
+            Console.WriteLine($"Erro ao listar usu√°rios: {ex.Message}");
         }
         finally
         {
@@ -226,7 +225,7 @@ public class UserController
         try
         {
             _database.OpenConnection();
-            string sql = "SELECT id, name, email, user_type FROM users WHERE id = @id";
+            string sql = "SELECT id, name, email FROM users WHERE id = @id";
 
             using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
             {
@@ -248,7 +247,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao buscar usu·rio: {ex.Message}");
+            Console.WriteLine($"Erro ao buscar usu√°rio: {ex.Message}");
         }
         finally
         {
@@ -277,7 +276,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao atualizar usu·rio: {ex.Message}");
+            Console.WriteLine($"Erro ao atualizar usu√°rio: {ex.Message}");
             return false;
         }
         finally
@@ -305,7 +304,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao atualizar usu·rio: {ex.Message}");
+            Console.WriteLine($"Erro ao atualizar usu√°rio: {ex.Message}");
             return false;
         }
         finally
@@ -331,7 +330,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao deletar usu·rio: {ex.Message}");
+            Console.WriteLine($"Erro ao deletar usu√°rio: {ex.Message}");
             return false;
         }
         finally
@@ -357,7 +356,7 @@ public class UserController
         }
         catch (MySqlException ex)
         {
-            Console.WriteLine($"Erro ao deletar usu·rio: {ex.Message}");
+            Console.WriteLine($"Erro ao deletar usu√°rio: {ex.Message}");
             return false;
         }
         finally

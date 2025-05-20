@@ -33,7 +33,18 @@ namespace BusCar.view
         /// </summary>
         private void InitializeComponent()
         {
+            btn_goto_cadastro = new Button();
             SuspendLayout();
+            // 
+            // btn_goto_cadastro
+            // 
+            btn_goto_cadastro.Location = new Point(1291, 926);
+            btn_goto_cadastro.Name = "btn_goto_cadastro";
+            btn_goto_cadastro.Size = new Size(205, 30);
+            btn_goto_cadastro.TabIndex = 0;
+            btn_goto_cadastro.Text = "button1";
+            btn_goto_cadastro.UseVisualStyleBackColor = true;
+            btn_goto_cadastro.Click += btn_goto_cadastro_Click;
             // 
             // LoginScreen
             // 
@@ -41,11 +52,14 @@ namespace BusCar.view
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Resources.Tela_de_Login;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(btn_goto_cadastro);
             Name = "LoginScreen";
             Text = "LoginScreen";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btn_goto_cadastro;
     }
 }
