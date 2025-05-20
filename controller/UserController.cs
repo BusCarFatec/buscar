@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Buscar.model;
 using Npgsql;
 using Buscar.Database;
+using MySql.Data.MySqlClient;
+
 
 public class UserController
 {
@@ -32,7 +34,7 @@ public class UserController
 
     }
 
-    public List<User> ListUsers()
+    public List<User> ListUsers(MySqlConnection conn)
     {
         var users = new List<User>();
 
