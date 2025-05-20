@@ -15,7 +15,9 @@ namespace BusCar.view
         public LoginScreen()
         {
             InitializeComponent();
-         
+
+
+
         }
 
         private void btn_goto_cadastro_Click(object sender, EventArgs e)
@@ -23,7 +25,6 @@ namespace BusCar.view
             var RegisterScreen = new RegisterScreen(); // ou qualquer outro Form
             RegisterScreen.Show(); // abre a nova tela
             this.Hide(); // oculta a atual
-            Application.Exit();
 
         }
     }

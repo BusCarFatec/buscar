@@ -74,6 +74,7 @@ namespace BusCar.view
             // btn_cadastrar
             // 
             btn_cadastrar.BackColor = SystemColors.Window;
+            btn_cadastrar.BackgroundImage = Resources.Tela_de_Cadastro;
             btn_cadastrar.Location = new Point(1067, 832);
             btn_cadastrar.Name = "btn_cadastrar";
             btn_cadastrar.Size = new Size(427, 75);
@@ -87,12 +88,14 @@ namespace BusCar.view
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Resources.Tela_de_Cadastro;
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(1904, 1041);
             Controls.Add(btn_cadastrar);
             Controls.Add(txt_box_cpf);
             Controls.Add(txt_box_cnpj);
             Controls.Add(txt_box_senha);
             Controls.Add(txt_box_name_register);
+            DoubleBuffered = true;
             Name = "RegisterScreen";
             Text = "RegisterScreen";
             ResumeLayout(false);

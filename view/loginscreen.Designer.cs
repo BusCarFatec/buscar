@@ -38,6 +38,8 @@ namespace BusCar.view
             // 
             // btn_goto_cadastro
             // 
+            btn_goto_cadastro.BackgroundImage = Resources.Tela_de_Login;
+            btn_goto_cadastro.ImageAlign = ContentAlignment.MiddleLeft;
             btn_goto_cadastro.Location = new Point(1291, 926);
             btn_goto_cadastro.Name = "btn_goto_cadastro";
             btn_goto_cadastro.Size = new Size(205, 30);

@@ -1,6 +1,6 @@
 using BCrypt.Net;
-using BusCar.Database;
-using BusCar.model;
+using Buscar.Database;
+using Buscar.model;
 using BusCar.Controller;
 using MySql.Data.MySqlClient;
 using System;

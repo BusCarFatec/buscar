@@ -1,4 +1,5 @@
 ﻿using System;
+using BusCar.view;
 using System.Windows.Forms; 
 
 namespace BusCar

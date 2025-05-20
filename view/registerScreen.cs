@@ -16,6 +16,9 @@ namespace BusCar.view
         {
             InitializeComponent();
 
+            this.BackgroundImage = Properties.Resources.Tela_de_Cadastro;
+
+
             var db = new Buscar.Database.Database();
             db.OpenConnection();
 
@@ -31,7 +34,16 @@ namespace BusCar.view
             string Cnpj = txt_box_cnpj.Text;
             string Cpf = txt_box_cpf.Text;
 
-            Console.WriteLine(Nome, Senha, Cnpj, Cpf);
+      
+
+            var LoginScreen = new LoginScreen(); // ou qualquer outro Form
+            LoginScreen.Show(); // abre a nova tela
+            this.Hide(); // oculta a atual
+        }
+
+        private void LoginScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Encerra o aplicativo todo
         }
     }
 }
