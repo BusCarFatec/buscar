@@ -1,70 +1,64 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace BusCar.Controller
 {
-    public class CPFController
+    public static class CPFController
     {
-        public bool ValidateCpf(string cpf)
+        public static bool ValidateCpf(string cpf)
         {
-            // Verifica se o CPF tem 11 dígitos e se todos os dígitos são iguais
-            if (cpf.Length != 11 || Regex.IsMatch(cpf, @"(\d)\1{10}"))
+            // Limpa o CPF, mantendo apenas dígitos
+            cpf = new string(cpf.Where(char.IsDigit).ToArray());
+
+            // Verifica tamanho e dígitos repetidos
+            if (cpf.Length != 11 || AllDigitsEqual(cpf))
             {
-                Console.WriteLine("CPF inválido");
+                Console.WriteLine("CPF inválido: formato incorreto");
                 return false;
             }
 
-            int[] cpfArray = ConvertCpfToArray(cpf);
+            // Converte para array de inteiros
+            int[] cpfArray = cpf.Select(c => int.Parse(c.ToString())).ToArray();
 
-            if (IsCpf(1, cpfArray))
-            {
-                Console.WriteLine("É um CPF válido");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("CPF não é válido");
-                return false;
-            }
+            // Valida dígitos verificadores
+            bool isValid = ValidateVerificationDigits(cpfArray);
+
+            Console.WriteLine(isValid ? "CPF válido" : "CPF inválido");
+            return isValid;
         }
 
-        public int[] ConvertCpfToArray(string cpf)
+        private static bool AllDigitsEqual(string cpf)
         {
-            int[] cpfArray = new int[11];
-
-            for (int i = 0; i < 11; i++)
-            {
-                cpfArray[i] = int.Parse(cpf[i].ToString());
-            }
-
-            return cpfArray;
+            return cpf.All(c => c == cpf[0]);
         }
 
-        public bool IsCpf(int tipo, int[] cpf)
+        private static bool ValidateVerificationDigits(int[] cpf)
         {
-            int soma = 0;
-            int resto;
-
-            // Valida o primeiro dígito verificador
+            // Valida primeiro dígito
+            int sum = 0;
             for (int i = 0; i < 9; i++)
             {
-                soma += cpf[i] * (10 - i);
+                sum += cpf[i] * (10 - i);
             }
 
-            resto = soma % 11;
-            int digito1 = (resto < 2) ? 0 : 11 - resto;
+            int remainder = sum % 11;
+            int firstDigit = (remainder < 2) ? 0 : 11 - remainder;
 
-            // Valida o segundo dígito verificador
-            soma = 0;
+            if (cpf[9] != firstDigit)
+                return false;
+
+            // Valida segundo dígito
+            sum = 0;
             for (int i = 0; i < 10; i++)
             {
-                soma += cpf[i] * (11 - i);
+                sum += cpf[i] * (11 - i);
             }
 
-            resto = soma % 11;
-            int digito2 = (resto < 2) ? 0 : 11 - resto;
+            remainder = sum % 11;
+            int secondDigit = (remainder < 2) ? 0 : 11 - remainder;
 
-            return (cpf[9] == digito1 && cpf[10] == digito2);
+            return cpf[10] == secondDigit;
         }
     }
 }
